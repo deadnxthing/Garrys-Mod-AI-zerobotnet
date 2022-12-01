@@ -7,5 +7,3 @@ def genereate_negative_description_file():
 
 genereate_negative_description_file()
 
-
-#C:\Users\KUBAC\Downloads\opencv\build\x64\vc15\bin
