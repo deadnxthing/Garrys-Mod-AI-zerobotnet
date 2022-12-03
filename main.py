@@ -9,10 +9,10 @@ import pyautogui
 import pydirectinput
 from threading import Thread
 
-wincap = WindowCapture("lunarclient")
+wincap = WindowCapture("Garry's Mod")
 
 
-gpu_crash=cv.CascadeClassifier('cascade\cascade.xml')
+gpu_crash=cv.CascadeClassifier('C:/Users/KUBAC/OneDrive/Pulpit/projekty/Garry-sMod-AI-zerobotnet/ai.xml')
 
 
 
@@ -36,13 +36,14 @@ def bot_actions(rectangles):
     if len(rectangles) > 0:
         targets=vision_crash.get_click_points(rectangles)
         target=wincap.get_screen_position(targets[0])
-        print('znalezione')
+        print('Found!')
         mouse_pos=pyautogui.position()
         pyautogui.moveTo(x=target[0], y=target[1])
         #klik('e')
+        sleep(5)
         pyautogui.moveTo(mouse_pos)
     if len(rectangles) == 0:
-        print('Nie znaleziono celu')
+        print('Not found!')
 
     global is_bot_in_action
     is_bot_in_action = False
@@ -53,7 +54,7 @@ while(True):
     screenshot = wincap.get_screenshot()
 
    
-    rectangles=gpu_crash.detectMultiScale(screenshot)
+    rectangles= gpu_crash.detectMultiScale(screenshot)
 
 
     detection_image=vision_crash.draw_rectangles(screenshot, rectangles)
@@ -62,7 +63,7 @@ while(True):
 
 
    
-    cv.imshow('siusiak', detection_image)
+    cv.imshow("Zero's BotNet AI made by kuba.#4158", detection_image)
     if not is_bot_in_action: 
         is_bot_in_action=True
         t= Thread(target=bot_actions, args=(rectangles,))
@@ -83,7 +84,7 @@ while(True):
     #elif key==ord('d'):
     #    cv.imwrite('negatywne/{}.jpg'.format(loop_time), screenshot)
 
-print('Koniec.')
+print('End.')
 
 
-#   C:\Users\KUBAC\Downloads\opencv\build\x64\vc15\bin\opencv_annotation.exe --images=pozytywne/ --annotations=pos.txt
+#   C:\Users\KUBAC\Downloads\opencv\build\x64\vc15\bin\opencv_annotation.exe --images=C:/Users/KUBAC/OneDrive/Pulpit/projekty/Garry-sMod-AI-zerobotnet/pozytywne/ --annotations=pos.txt
