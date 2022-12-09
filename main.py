@@ -12,7 +12,7 @@ from threading import Thread
 wincap = WindowCapture("Garry's Mod")
 
 
-gpu_crash=cv.CascadeClassifier('C:/Users/KUBAC/OneDrive/Pulpit/projekty/Garry-sMod-AI-zerobotnet/ai.xml')
+gpu_crash=cv.CascadeClassifier('C:/Users/KUBAC/OneDrive/Pulpit/projekty/Garry-sMod-AI-zerobotnet/cascade.xml')
 
 
 
@@ -37,10 +37,10 @@ def bot_actions(rectangles):
         targets=vision_crash.get_click_points(rectangles)
         target=wincap.get_screen_position(targets[0])
         print('Found!')
+        pyautogui.drag(1, 0, 2)
         mouse_pos=pyautogui.position()
         pyautogui.moveTo(x=target[0], y=target[1])
-        #klik('e')
-        sleep(5)
+        klik('e')
         pyautogui.moveTo(mouse_pos)
     if len(rectangles) == 0:
         print('Not found!')
